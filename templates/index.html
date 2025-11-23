@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shipment Delivery Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/loader.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-lg form-box">
+
+        <h2 class="text-center mb-3">Prediksi Ketepatan Waktu Pengiriman</h2>
+        <p class="text-center text-muted">Masukkan data paket untuk memprediksi on-time atau delay</p>
+
+        <form method="POST" action="/predict" onsubmit="showLoader()">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+                    <label>ID</label>
+                    <input type="number" name="ID" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Biaya Pengiriman</label>
+                    <input type="number" name="Cost_of_Shipment" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Berat (grams)</label>
+                    <input type="number" name="Weight_in_gms" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Diskon Ditawarkan</label>
+                    <input type="number" name="Discount_offered" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Biaya Produk ($)</label>
+                    <input type="number" name="Cost_of_the_Product" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Pembelian Sebelumnya</label>
+                    <input type="number" name="Prior_purchases" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Peringkat Pelanggan</label>
+                    <input type="number" name="Customer_rating" class="form-control" min="1" max="5" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Panggilan Layanan Pelanggan</label>
+                    <input type="number" name="Customer_care_calls" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Gender</label>
+                    <select name="Gender" class="form-select">
+                        <option>Pria</option>
+                        <option>Wanita</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Mode of Shipment</label>
+                    <select name="Mode_of_Shipment" class="form-select">
+                        <option>Flight</option>
+                        <option>Ship</option>
+                        <option>Road</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label>Product Importance</label>
+                    <select name="Product_importance" class="form-select">
+                        <option>high</option>
+                        <option>medium</option>
+                        <option>low</option>
+                    </select>
+                </div>
+
+                <!-- FIXED PART: WAJIB ADA -->
+                <div class="col-md-6">
+                    <label>Warehouse Block</label>
+                    <select name="Warehouse_block" class="form-select" required>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                        <option>E</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary w-100 mt-4">Prediksi</button>
+
+            <a href="/charts" class="btn btn-outline-secondary w-100 mt-3">Lihat Grafik</a>
+        </form>
+    </div>
+</div>
+
+<div id="loader" class="loader-overlay" style="display:none;">
+    <div class="spinner"></div>
+    <p class="loading-text">Sedang memproses...</p>
+</div>
+
+<script>
+function showLoader() {
+    document.getElementById("loader").style.display = "flex";
+}
+</script>
+
+</body>
+</html>

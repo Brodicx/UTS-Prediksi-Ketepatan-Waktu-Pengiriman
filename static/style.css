@@ -1,0 +1,13 @@
+body {
+    background: #f4f6f9;
+}
+
+.form-box {
+    border-radius: 15px;
+}
+
+.chart-img {
+    width: 85%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
